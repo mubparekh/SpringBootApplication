@@ -1,0 +1,92 @@
+Create Maven project file, new, Maven, maven project, add name and finish
+error will present
+edit pom.xml file
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mparekh</groupId>
+  <artifactId>SpringBootApplication</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <properties>
+    <java.version>1.8</java.version>
+  </properties>
+  
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.2.RELEASE</version>
+  </parent>
+  
+  <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+  </dependencies>
+  <build>
+    <finalName>SpringBootApplication</finalName>
+  </build>
+</project>
+
+To remove the error- right click project, Maven, update project, select Force...snapshot, finish
+
+from source package src/main/java, create new class with a new package name and class name- Application, select main, finish
+
+-Edit the main class with annotation etc.
+
+-Create new contrller package and class, edit it with @RestController etc.
+
+-For configuration of JSP view resolver, create new file- application.properties in src/main/resources. Normally requires to be added in .xml and configurations but spring boot makes it easy by putting it in application.properties file.
+-Delete the unwanted web.xml file 
+-Create new package and .jsp file
+-Crete MainController with @Controller, url mapplicng will be hendled by dispatcher servlet which will resolve to JSP files
+-For JSP, we need Tomcat Jasper dependencies, add dependency
+-Update project will give error. resolve by window, showview, navigator, edit ...facet.core.xml,  <installed facet="jst.web" version="3.1"/>
+-Update project to see the error is gone.
+
+-Ceate model entity wit @Entity, initialize fields private eg name, description etc., generate getter and setter methods for all fields (right click, source, getter and setter), similarly generate construction for all fields except id, generate toString methods for all fields.
+
+-Create interface, so in spring data we dont need to create implementation of interface and just extend crudrepository contains useful functionality for CRUD operation- save, update, delete, findall
+
+-Create Service class which will use this repository. call taskRepository object, generate constructor for task repository: right click->source->geenrate constructor using fields
+-Create findAll method using List of Tasks and adding each task (for loop) to Tasks list from repository.
+
+-Create method AllTasks in SpringRestController, call taskService method findAll() and use toString to get a printed formate on server.
+
+-Configure Spring Data, it uses Hibernate as default framework
+-Add dependencies for JPA
+-Add dependencies for MySql connector
+
+-Create (new shema) database Tasks in mysql Workbench
+- Create Table t_tasks
+CREATE TABLE `springbootapp`.`t_tasks` (
+
+  `id` INT NOT NULL AUTO_INCREMENT,
+
+  `name` VARCHAR(45) NULL,
+
+  `description` VARCHAR(45) NULL,
+
+  `date_created` DATETIME NULL,
+
+  `finished` BIT(1) NULL DEFAULT 0,
+
+  PRIMARY KEY (`id`));
+
+-Create save and delete functionality
+
+-BOOTSTRAPING THE PROJECT
+-download bootstarp from its page 
+-create static folder in the src\main\webapp\static
+-Create css, js, fonts folder inside this
+-Delete all previous contents and start from the new html- add meta tags, hiperref to css file, title, script to necessary js files both in head and body
+-In body, create navigation bar
+-Then create containers 
+1) Welcome container
+2) Table container for all tasks. Include the jstl dependencies and include in the index.jsp file at the top (this is for using c:forEach function). Also make a invisible-at-first in new style.css file to see how each view looks for different pages look in the home page at first. Add the controller for the this view as setting Http request to a variable which is returned from the taskService.findAll(). 
+3) Create additional controllers too- update, delete, save, new
+4) Create container for the 'Manage Task' by making a form for inputs 

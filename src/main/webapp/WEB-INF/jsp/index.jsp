@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -30,11 +34,74 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container invisible-at-first" id="homeDiv">
 		<div class="jombotron text-center">
 			<h1>Welcome to Task Manager</h1>
 		</div>
-	</div>>
+	</div>
+	
+	<div class="container text-center invisible-at-first" id="tasksDiv">
+		<div class="jombotron text-center">
+			<h3>My Tasks</h3>
+			<hr>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered text-left">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Date Created</th>
+							<th>Finished</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="task" items="${tasks}">
+						<tr>
+							<td>${task.id}</td>
+							<td>${task.name}</td>
+							<td>${task.description}</td>
+							<td>${task.dateCreated}</td>
+							<td>${task.finished}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container text-center">
+				<h3>Manage Task</h3>
+				<hr>
+				<form class="form-horizontal" method="POST" action="save-task">
+					<input type="hidden" name="id" value="${task.id}"/>
+					<div class="form-group">
+						<label class="control-label col-md-3">Name</label>
+						<div class="col-md-7">
+						<input type="text" class="form-control" name="name" value="${task.name}"/>
+						</div>				
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Description</label>
+						<div class="col-md-7">
+						<input type="text" class="form-control" name="description" value="${task.description}"/>
+						</div>				
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Finished</label>
+						<div class="col-md-7">
+							<input type="radio" class="col-sm-1" name="finished" value="true"/>
+							<div class="col-md-1">Yes</div>
+							<input type="radio" class="col-sm-1" name="finished" value="false"/>
+							<div class="col-md-1">No</div>
+						</div>				
+					</div>
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Save"/>
+					</div>
+				</form>
+	</div>
 
 	<script src="static/js/jquery-1.11.1.min.js"></script>    
     <script src="static/js/bootstrap.min.js"></script>

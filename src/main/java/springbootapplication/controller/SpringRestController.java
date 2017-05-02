@@ -21,7 +21,7 @@ public class SpringRestController {
 		return "Hello World!";
 	}
 	
-	@GetMapping("/all-tasks")
+	/*@GetMapping("/all-tasks")
 	public String allTasks(){
 		return taskService.findAll().toString();
 	}
@@ -37,5 +37,5 @@ public class SpringRestController {
 	public String deleteTask(@RequestParam int id){
 		taskService.delete(id);
 		return "Task Deleted!";
-	}
+	}*/
 }
