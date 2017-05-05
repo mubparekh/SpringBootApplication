@@ -1,10 +1,13 @@
 package springbootapplication.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,10 +56,11 @@ public class MainController {
 	}
 	
 	@PostMapping("/save-task")
-	public String saveTask(@ModelAttribute springbootapplication.model.Task task, HttpServletRequest request){
+	public String saveTask(@ModelAttribute springbootapplication.model.Task task, BindingResult bindingResult, HttpServletRequest request){
+		task.setDateCreated(new Date());
 		taskService.save(task);
 		request.setAttribute("tasks", taskService.findAll());
-		request.setAttribute("mode", "MODE_NEW");
+		request.setAttribute("mode", "MODE_TASKS");
 		return "index";
 	}
 }

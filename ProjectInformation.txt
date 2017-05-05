@@ -86,7 +86,9 @@ CREATE TABLE `springbootapp`.`t_tasks` (
 -Delete all previous contents and start from the new html- add meta tags, hiperref to css file, title, script to necessary js files both in head and body
 -In body, create navigation bar
 -Then create containers 
-1) Welcome container
-2) Table container for all tasks. Include the jstl dependencies and include in the index.jsp file at the top (this is for using c:forEach function). Also make a invisible-at-first in new style.css file to see how each view looks for different pages look in the home page at first. Add the controller for the this view as setting Http request to a variable which is returned from the taskService.findAll(). 
-3) Create additional controllers too- update, delete, save, new
-4) Create container for the 'Manage Task' by making a form for inputs 
+1) Creare a Welcome container
+2) Create Table container for all tasks. Include the jstl dependencies and include in the index.jsp file at the top (this is for using c:forEach function). Also make a invisible-at-first in new style.css file to see how each view looks for different pages look in the home page at first. Add the controller for the this view as setting Http request to a variable which is returned from the taskService.findAll(). 
+- Add additional controllers too- update, delete, save, new
+3) Create container for the 'Manage Task' by making a form for inputs
+- Now create a switch statement using 'c:choose' and 'c:when' to choose different modes- home, new, tasks, update
+ 
